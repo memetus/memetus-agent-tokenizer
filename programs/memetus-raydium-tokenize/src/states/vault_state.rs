@@ -2,8 +2,9 @@ use anchor_lang::prelude::*;
 
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, PartialEq, Eq, Debug, InitSpace)]
 pub enum VaultStatus {
-    Uninitialized,  
-    Active,        
+    Uninitialized,
+    Fundraising,
+    Operating,
     Settled,        
 }
 
@@ -13,9 +14,11 @@ pub enum VaultStatus {
 pub struct VaultState {
   pub id: u64,
   pub owner: Pubkey,
+  pub mint: Pubkey,
   pub vault_treasury: Pubkey,
   pub timestamp: i64,
   pub status: VaultStatus, 
   pub bump: u8,
   pub amount: u64,
+  pub target_amount: u64,
 }
