@@ -1,7 +1,6 @@
 use anchor_lang::prelude::*;
 use anchor_lang::system_program;
 
-use crate::errors::withdraw_sol_error::WithdrawSolError;
 use crate::states::vault_state::*;
 use crate::events::withdraw_sol_event::WithdrawSolEvent;
 
@@ -43,11 +42,6 @@ impl<'info> WithdrawSol<'info> {
     &mut self,
     id: u64,
   ) -> Result<()> {
-    require!(
-      self.vault_manager.status == VaultStatus::Active || self.vault_manager.status == VaultStatus::Settled,
-      WithdrawSolError::VaultNotInitialized
-    );
-
     // Transfer the SOL from the vault treasury to the owner
     let cpi_accounts = system_program::Transfer {
       from: self.vault_treasury.to_account_info(),
@@ -65,7 +59,7 @@ impl<'info> WithdrawSol<'info> {
       vault_manager: self.vault_manager.key(),  
       vault_treasury: self.vault_treasury.key(),
       timestamp: Clock::get()?.unix_timestamp,
-      status: VaultStatus::Active,
+      status: VaultStatus::Settled,
       amount: amount,
     });
 
