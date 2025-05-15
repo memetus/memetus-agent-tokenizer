@@ -1,12 +1,12 @@
 [package]
-name = "memetus-raydium-tokenize"
+name = "memetus-agent-tokenizer"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "memetus_raydium_tokenize"
+name = "memetus_agent_tokenizer"
 
 [features]
 default = []

@@ -13,7 +13,7 @@ use crate::states::{CreateInitializeMintArgs, VaultStatus};
 declare_id!("C1Knh3YFfMwr2LLaoT9JXcVZHHH52YSm8gBNyCinGABg");
 
 #[program]
-pub mod memetus_raydium {
+pub mod memetus_agent_tokenizer {
 
     use super::*;
 
